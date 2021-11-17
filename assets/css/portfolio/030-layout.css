@@ -54,9 +54,14 @@ Enthält alle Regeln zum Layout.
 }
 
 
-#l-mainHeader .m-portfolioItem-title,
+#l-mainHeader .m-portfolioItem-title{
+  color: var(--color-accent);
+  opacity: 1;
+}
+
 #l-mainHeader .m-portfolioItem-subtitle{
   color: var(--color-backgrounds);
+  opacity: 1;
 }
 
 #l-mainHeader figcaption p{
