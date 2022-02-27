@@ -3,3 +3,7 @@ addons.css
 Enthält alle zusätzlichen Klassen und Erweiterungen
 ----------------------------------------------------------------------------*/
 
+.setting-header{
+    color: var(--color-accent);
+    font-weight: bold;
+}

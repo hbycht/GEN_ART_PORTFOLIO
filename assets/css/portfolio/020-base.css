@@ -49,12 +49,12 @@ Enthält alle CSS Variabeln und grundlegende Regeln.
     /* 
     Farben
     ----------------------------------------*/
-    --color-text: #555;
+    --color-text: rgb(39, 51, 68);
     --color-dark: #000;
     --color-text-light: #999;
-    --color-headlines: #038CAB;
-    --color-accent-hover: #015E73;
-    --color-accent: #049DBF;
+    --color-headlines: #bd8a00;
+    --color-accent-hover: #916f00;
+    --color-accent: #d69d00;
     --color-backgrounds: #efefef;
     --color-borders: rgba(0, 0, 0, 0.3);
     --color-button-bg: rgba(0, 0, 0, 0.8);
@@ -224,4 +224,14 @@ border-bottom: dotted 1px var(--color-text-light);
 overflow-wrap: break-word;
 word-wrap: break-word;
 hyphens: auto;
+}
+
+ul{
+  padding-left: var(--m);
+  list-style-type: '~ ';
+  font-size: smaller;
+}
+
+b{
+  color: var(--color-headlines);
 }

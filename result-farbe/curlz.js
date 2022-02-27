@@ -39,35 +39,35 @@ let drawingParams = {
 
   preset: ["DEFAULT", "Randooom"],
 
-  numHairs: 30,
-  numHairsMin: 1,
-  numHairsMax: 100,
-  numHairsStep: 1,
+  numStrings: 30,
+  numStringsMin: 1,
+  numStringsMax: 100,
+  numStringsStep: 1,
 
-  hairThickness: 2,
-  hairThicknessMin: 0,
-  hairThicknessMax: 10,
-  hairThicknessStep: .1,
+  stringThickness: 2,
+  stringThicknessMin: 0,
+  stringThicknessMax: 10,
+  stringThicknessStep: .1,
 
-  hairAmplitude: 10,
-  hairAmplitudeMin: -30,
-  hairAmplitudeMax: 30,
-  hairAmplitudeStep: 1,
+  stringAmplitude: 10,
+  stringAmplitudeMin: -30,
+  stringAmplitudeMax: 30,
+  stringAmplitudeStep: 1,
   
-  hairFrequency: 12,
-  hairFrequencyMin: 2,
-  hairFrequencyMax: 100,
-  hairFrequencyStep: 1,
+  stringFrequency: 12,
+  stringFrequencyMin: 2,
+  stringFrequencyMax: 100,
+  stringFrequencyStep: 1,
   
-  hairLength: 14,
-  hairLengthMin: 1,
-  hairLengthMax: 100,
-  hairLengthStep: 1,
+  stringLength: 14,
+  stringLengthMin: 1,
+  stringLengthMax: 100,
+  stringLengthStep: 1,
   
-  // hairRandom: 40,
-  // hairRandomMin: 0,
-  // hairRandomMax: 100,
-  // hairRandomStep: 1,
+  // stringRandom: 40,
+  // stringRandomMin: 0,
+  // stringRandomMax: 100,
+  // stringRandomStep: 1,
 
   // boxes: false,
 
@@ -76,10 +76,10 @@ let drawingParams = {
   radiusMax: 40,
   radiusStep: 1,
   
-  numRings: 12,
-  numRingsMin: 1,
-  numRingsMax: 40,
-  numRingsStep: 1,
+  numStringCopies: 12,
+  numStringCopiesMin: 1,
+  numStringCopiesMax: 40,
+  numStringCopiesStep: 1,
 
   angleOffset: 19,
   angleOffsetMin: -30,
@@ -163,7 +163,7 @@ function showHint(hint, xP, yP)
   textAlign(CENTER);
   textSize(sizeText);
 
-  if(dist(mouseX, mouseY, width/2, height/2) < 200)
+  if(dist(mouseX, mouseY, width/2, height/2) < 240)
   {
     hintAlpha = min(hintAlpha + aniSpeed, 100);
   }
@@ -182,21 +182,21 @@ function mouseOnCanvas() {
   return mouseX > 0 && mouseX < canvasParams.w && mouseY > 0 && mouseY < canvasParams.h;
 }
 
-// function fibonacci(index)
-// {
-//   let actual = 1;
-//   let previous = 1;
-//   let temp;
-
-//   for(let i = 0; i < index; i++)
-//   {
-//     temp = actual;
-//     actual = actual + previous;
-//     previous = temp;
-//   }
-
-//   return actual;
-// }
+function setRandomParameters(){
+  sketchGUI.update('preset', 1);
+  sketchGUI.update('numStrings', random(1, 20));
+  sketchGUI.update('stringThickness', random(4));
+  sketchGUI.update('stringAmplitude', random(1, drawingParams.stringAmplitudeMax));
+  sketchGUI.update('stringFrequency', random(2, 20));
+  sketchGUI.update('stringLength', random(1, 30));
+  sketchGUI.update('radius', random(20));
+  sketchGUI.update('numStringCopies', random(1, 15));
+  sketchGUI.update('angleOffset', random(drawingParams.angleOffsetMax));
+  sketchGUI.update('spacing', random(drawingParams.spacingMax));
+  sketchGUI.update('hueInside', random(drawingParams.hueInsideMax));
+  sketchGUI.update('hueOutside', random(drawingParams.hueOutsideMax));
+  sketchGUI.update('backgroundAlpha', random(drawingParams.backgroundAlphaMax));
+}
 
 
 
@@ -252,13 +252,13 @@ function draw() {
   if (drawingParams.preset !== currentPreset) { 
     currentPreset = drawingParams.preset;
     if (drawingParams.preset === 'DEFAULT') { 
-      sketchGUI.update('numHairs', 30);
-      sketchGUI.update('hairThickness', 2);
-      sketchGUI.update('hairAmplitude', 10);
-      sketchGUI.update('hairFrequency', 12);
-      sketchGUI.update('hairLength', 14);
+      sketchGUI.update('numStrings', 30);
+      sketchGUI.update('stringThickness', 2);
+      sketchGUI.update('stringAmplitude', 10);
+      sketchGUI.update('stringFrequency', 12);
+      sketchGUI.update('stringLength', 14);
       sketchGUI.update('radius', 12);
-      sketchGUI.update('numRings', 12);
+      sketchGUI.update('numStringCopies', 12);
       sketchGUI.update('angleOffset', 19);
       sketchGUI.update('spacing', 10);
       sketchGUI.update('blendingMode', 0);
@@ -267,18 +267,7 @@ function draw() {
       sketchGUI.update('backgroundAlpha', 5);
     } 
     else if (drawingParams.preset === 'Randooom') { 
-      sketchGUI.update('numHairs', random(1, 30));
-      sketchGUI.update('hairThickness', random(drawingParams.hairThicknessMax));
-      sketchGUI.update('hairAmplitude', random(1, drawingParams.hairAmplitudeMax));
-      sketchGUI.update('hairFrequency', random(2, 20));
-      sketchGUI.update('hairLength', random(1, 30));
-      sketchGUI.update('radius', random(20));
-      sketchGUI.update('numRings', random(1, 20));
-      sketchGUI.update('angleOffset', random(drawingParams.angleOffsetMax));
-      sketchGUI.update('spacing', random(drawingParams.spacingMax));
-      sketchGUI.update('hueInside', random(drawingParams.hueInsideMax));
-      sketchGUI.update('hueOutside', random(drawingParams.hueOutsideMax));
-      sketchGUI.update('backgroundAlpha', random(drawingParams.backgroundAlphaMax));
+      setRandomParameters();
     } 
   }
 
@@ -297,17 +286,17 @@ function draw() {
   let mX = canvasParams.mouseX;
   let mY = canvasParams.mouseY;
 
-  // HAIRS
-  let numHairs = drawingParams.numHairs;
-  let hairThickness = drawingParams.hairThickness;
-  let hairAmplitude = drawingParams.hairAmplitude * cos(- frameCount / 10);
-  let hairFrequency = drawingParams.hairFrequency;
-  let hairLength = drawingParams.hairLength;
-  // let hairRandom = drawingParams.hairRandom;
-  let hairRandom = 1;
+  // STRINGS
+  let numStrings = drawingParams.numStrings;
+  let stringThickness = drawingParams.stringThickness;
+  let stringAmplitude = drawingParams.stringAmplitude * cos(- frameCount / 10);
+  let stringFrequency = drawingParams.stringFrequency;
+  let stringLength = drawingParams.stringLength;
+  // let stringRandom = drawingParams.stringRandom;
+  let stringRandom = 1;
 
   // RINGS
-  let numRings = drawingParams.numRings;
+  let numStringCopies = drawingParams.numStringCopies;
   let spacing = drawingParams.spacing;
   let angleOffset = drawingParams.angleOffset;
   let radiusFirstCircle = (sin(frameCount) * drawingParams.radius / 100) * minDimension;
@@ -361,17 +350,17 @@ function draw() {
   rotate(preRotation);
 
 
-  for(i = 0; i < numRings; i++)
+  for(i = 0; i < numStringCopies; i++)
   {
     let radiusCircle = radiusFirstCircle + spacing * i;
-    let angleStep = 360 / numHairs;
+    let angleStep = 360 / numStrings;
 
     colorMode(RGB);
-    let color = lerpColor(colorInside, colorOutside, i / (numRings - 1 + 0.001));
+    let color = lerpColor(colorInside, colorOutside, i / (numStringCopies - 1 + 0.001));
     colorMode(HSB);
     
     stroke(color);
-    strokeWeight(hairThickness / (i+1));
+    strokeWeight(stringThickness / (i+1));
     noFill();
 
 
@@ -387,17 +376,17 @@ function draw() {
       beginShape();
       curveVertex(0, 0);
       curveVertex(0, 0);
-      for(let s = 1; s < hairFrequency; s++)
+      for(let s = 1; s < stringFrequency; s++)
       {
-        let xP = radiusCircle + s * (hairLength / hairFrequency) * hairLength + (noise(s / 40, millis() / 3000) * 2 - 1) * hairRandom;
-        let yP = (s % 2 == 0 ? -hairAmplitude * s : hairAmplitude * s) + (noise(millis() / 5000, s / 20) * 2 - 1) * hairRandom;
+        let xP = radiusCircle + s * (stringLength / stringFrequency) * stringLength + (noise(s / 40, millis() / 3000) * 2 - 1) * stringRandom;
+        let yP = (s % 2 == 0 ? -stringAmplitude * s : stringAmplitude * s) + (noise(millis() / 5000, s / 20) * 2 - 1) * stringRandom;
         curveVertex(xP, yP);
 
-        if(s == hairFrequency - 1) {curveVertex(xP, yP);}
+        if(s == stringFrequency - 1) {curveVertex(xP, yP);}
 
         // // BOXES
         // if(drawingParams.boxes){
-        //   rect(xP, yP, hairAmplitude * 2, hairAmplitude / 2);
+        //   rect(xP, yP, stringAmplitude * 2, stringAmplitude / 2);
         // }
       }
       endShape();
@@ -408,14 +397,15 @@ function draw() {
   
   pop();
 
-  showHint("Just switch between the DEFAULT & Randooom preset. Again & again.", midX, midY);
+  showHint("Press \"R\" to randomize the sketch settings.", midX, midY);
 }
 
 
 
 function keyPressed() {
 
-  if (keyCode === 81) { // Q-Key
+  if (key === 'r') { // R-Key
+    setRandomParameters();
   }
 
   if (keyCode === 87) { // W-Key
@@ -458,7 +448,9 @@ function keyPressed() {
 
 
 
-function mousePressed() {}
+function mousePressed() {
+  
+}
 
 
 

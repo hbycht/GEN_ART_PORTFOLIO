@@ -63,7 +63,7 @@ Enthält alle Regeln zu Module.
   color: var(--color-text);
   border: none;
   border-left: solid var(--xxs) var(--color-accent);
-  transition: all 0.4s;
+  transition: all 0.6s;
   font-weight: var(--fw-bold);
   border-radius: var(--radius);
 }

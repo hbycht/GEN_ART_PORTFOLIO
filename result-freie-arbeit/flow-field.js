@@ -330,6 +330,20 @@ function drawFlowfield() {
   preParamQ = paramQ;
 }
 
+function setRandomSettings(){
+  sketchGUI.update('preset', drawingParams.preset.length - 1);
+  sketchGUI.update('numParticles', random(1500));
+  sketchGUI.update('particleSpeed', random(drawingParams.particleSpeedMax));
+  sketchGUI.update('particleSize', random(0.5, 5));
+  sketchGUI.update('attachToForces', random(drawingParams.attachToForcesMax));
+  sketchGUI.update('forceSpacing', random(drawingParams.forceSpacingMax));
+  sketchGUI.update('noiseIncrement', random(drawingParams.noiseIncrementMax));
+  sketchGUI.update('reactToForces', true);
+  sketchGUI.update('particleColorBegin', random(drawingParams.particleColorBeginMax));
+  sketchGUI.update('particleColorEnd', random(drawingParams.particleColorEndMax));
+  sketchGUI.update('backgroundAlpha', random(25));
+}
+
 
 
 /* ###########################################################################
@@ -444,8 +458,8 @@ function draw() {
       sketchGUI.update('noiseIncrement', 0.8);
       sketchGUI.update('reactToForces', true);
       sketchGUI.update('defaultAngle', 310);
-      sketchGUI.update('particleColorBegin', 170);
-      sketchGUI.update('particleColorEnd', 280);
+      sketchGUI.update('particleColorBegin', 10);
+      sketchGUI.update('particleColorEnd', 120);
       sketchGUI.update('backgroundAlpha', 1);
     }
     else if (drawingParams.preset === 'Stream') {
@@ -475,16 +489,7 @@ function draw() {
       sketchGUI.update('backgroundAlpha', 5);
     } 
     else if (drawingParams.preset === 'Randooom') { 
-      sketchGUI.update('numParticles', random(1500));
-      sketchGUI.update('particleSpeed', random(drawingParams.particleSpeedMax));
-      sketchGUI.update('particleSize', random(0.5, 5));
-      sketchGUI.update('attachToForces', random(drawingParams.attachToForcesMax));
-      sketchGUI.update('forceSpacing', random(drawingParams.forceSpacingMax));
-      sketchGUI.update('noiseIncrement', random(drawingParams.noiseIncrementMax));
-      sketchGUI.update('reactToForces', true);
-      sketchGUI.update('particleColorBegin', random(drawingParams.particleColorBeginMax));
-      sketchGUI.update('particleColorEnd', random(drawingParams.particleColorEndMax));
-      sketchGUI.update('backgroundAlpha', random(25));
+      setRandomSettings();
     }
   }
 
@@ -504,7 +509,8 @@ function draw() {
 
 function keyPressed() {
 
-  if (keyCode === 81) { // Q-Key
+  if (key === "r") { // R-Key
+    setRandomSettings();
   }
 
   if (keyCode === 87) { // W-Key

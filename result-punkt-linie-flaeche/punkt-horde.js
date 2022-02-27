@@ -54,6 +54,8 @@ let drawingParams = {
   dotSizeMax: 10,
   dotSizeStep: 0.1,
 
+  filledDots: true,
+
   speedMode: ["exponential", "linear"],
 
   dotSpeed: 5,
@@ -110,10 +112,11 @@ let loggingParams = {
 Classes
 ############################################################################ */
 class Dot {
-  constructor(xHome, yHome, size, col, radiusAgent, veloFac, linearSpeed) {
+  constructor(xHome, yHome, size, filled, col, radiusAgent, veloFac, linearSpeed) {
     this.home = createVector(xHome, yHome);
     this.position = this.home.copy();
     this.radius = size;
+    this.filled = filled;
     this.dist = 0;
     this.startVelo = 10;
     this.velo = this.startVelo;
@@ -135,7 +138,15 @@ class Dot {
   }
 
   draw() {
-    fill(this.col);
+
+    if(!this.filled){
+      stroke(this.col);
+      noFill();
+    } else {
+      fill(this.col);
+      noStroke();
+    }
+
     ellipse(this.position.x, this.position.y, this.radius * 2);
   }
 
@@ -265,6 +276,7 @@ function draw() {
       sketchGUI.update('columns', 100);
       sketchGUI.update('rows', 50);
       sketchGUI.update('dotSize', 2.9);
+      sketchGUI.update('filledDots', true);
       sketchGUI.update('speedMode', 0);
       sketchGUI.update('dotSpeed', 5);
       sketchGUI.update('experimentalMode', false);
@@ -279,6 +291,7 @@ function draw() {
       sketchGUI.update('columns', 100);
       sketchGUI.update('rows', 50);
       sketchGUI.update('dotSize', 2);
+      sketchGUI.update('filledDots', true);
       sketchGUI.update('speedMode', 1);
       sketchGUI.update('dotSpeed', 5);
       sketchGUI.update('experimentalMode', false);
@@ -287,6 +300,7 @@ function draw() {
       sketchGUI.update('columns', 100);
       sketchGUI.update('rows', 50);
       sketchGUI.update('dotSize', 2.5);
+      sketchGUI.update('filledDots', !true);
       sketchGUI.update('speedMode', 1);
       sketchGUI.update('dotSpeed', 10);
       sketchGUI.update('experimentalMode', true);
@@ -295,6 +309,7 @@ function draw() {
       sketchGUI.update('columns', 100);
       sketchGUI.update('rows', 50);
       sketchGUI.update('dotSize', 2);
+      sketchGUI.update('filledDots', !true);
       sketchGUI.update('speedMode', 0);
       sketchGUI.update('dotSpeed', 4);
       sketchGUI.update('experimentalMode', true);
@@ -303,6 +318,7 @@ function draw() {
       sketchGUI.update('columns', 100);
       sketchGUI.update('rows', 50);
       sketchGUI.update('dotSize', 2);
+      sketchGUI.update('filledDots', true);
       sketchGUI.update('speedMode', 1);
       sketchGUI.update('dotSpeed', 50);
       sketchGUI.update('experimentalMode', true);
@@ -326,6 +342,7 @@ function draw() {
   let xSpacing = width / (columns + 1);
   let ySpacing = height / (rows + 1);
   let dotSize = drawingParams.dotSize;
+  let filled = drawingParams.filledDots;
   let veloDiv = drawingParams.dotSpeed;
   let linearSpeed = drawingParams.speedMode === "linear" ? true : false;
   let experimental = drawingParams.experimentalMode;
@@ -369,7 +386,7 @@ function draw() {
         col = lerpColor(col_1, col_2, (j * columns + i * rows) / numDots/2);
         colorMode(HSB, 360, 100, 100, 100);
 
-        dots.push(new Dot(xPos, yPos, dotSize, col, radiusMouse, veloDiv, linearSpeed));
+        dots.push(new Dot(xPos, yPos, dotSize, filled, col, radiusMouse, veloDiv, linearSpeed));
       }
     }
   }

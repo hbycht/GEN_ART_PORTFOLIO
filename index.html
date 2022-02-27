@@ -45,9 +45,17 @@ https://cnoss.github.io/generative-gestaltung/
           <figcaption>
             <h2 class="m-portfolioItem-title">FLOW_</h2>
             <h3 class="m-portfolioItem-subtitle">Von unscheinbaren Kräften geleitet.</h3>
-            <p>Begründen Sie die Gestaltung und die gestalterischen Entscheidungen die dem Sketch zugrunde liegen. Was ist die Grundidee, warum wurde sie so umgesetzt, wie sie umgesetzt wurde? Was macht den Sketch interessant? Inwiefern zahlt die Arbeit auf das Thema ein? Falls Sie DrawingParams nutzen, erläutern Sie bitte, warum Sie die jeweiligen Parameter brauchen, warum die Wertebereiche so gewählt wurden und warum Sie die einzelnen Parameter so initialisiert haben, wie Sie es schlussendlich gemacht haben.</p>
-            <p>Bitte erläutern Sie beim Hauptmotiv, warum es Ihr Hauptmotiv ist. Warum haben Sie es ausgewählt? Warum ist es stärker, prägnanter, interessanter, eigenständiger und/ oder besser als Ihre anderen Arbeiten?</p>
-            <p>Bleiben Sie bei Ihren Erläuterungen kurz, präzise, sachlich, objektiv und nachvollziehbar.</p>
+
+            <p>Unzählige Partikel bewegen sich in einem freien Feld und reagieren auf die dort herrschenden Kräfte. Durch Annäherung und ähnliche Richtung der einzelnen Akteure entsteht der Eindruck einer organischen Gruppenbewegung. So erinnert der Sketch je nach eingestelltem Preset an Flussströme, die sich durch ein Gebirge bahnen, an sanft schwingende Tentakel eines Korallenriffs oder an feine Staubpartikel, die sich im Sonnenlicht winden.</p>
+            <p>Ich lade herzlich dazu ein, durch die verschiedenen Presets des Sketches zu wechseln und mit den zur Verfügung gestellten Einstellungen zu experimentieren.</p>
+            <p>Dem Sketch liegt ein Raster unsichtbarer Kraftvektoren zu Grunde, die die Bewegungsrichtungen der Partikel beeinflussen. Durch den Einsatz von Perlin-Noise stehen die einzelnen Kräfte in einem organisch scheinendem sich veränderndem Zusammenhang. Durch Veränderung des "backgroundAlpha"-Wertes hinterlassen die Punkte eine sichtbare Spur oder schweben als klar abgrenzbare Körner über das Canvas.</p>
+            <p class="setting-header">Die Wirkung der wichtigsten Parameter:</p>
+            <ul>
+              <li><b>attachToForces</b> – der Grad, wie stark die Punkte auf die Kräfte reagieren</li>
+              <li><b>forceSpacing</b> – der Abstand zwischen den einzelnen Kräften</li>
+              <li><b>noiseIncrement</b> – der Grad, wie stark sich die Richtungen der Kräfte unterscheiden</li>
+              <li><b>backgroundAlpha</b> – je geringer, desto länger ziehen sich die Spuren der Punkte</li>
+            </ul>
 
             <p><a class="m-linkButton m-linkButton--invers" href="result-freie-arbeit/">Sketch zeigen</a></p>
           </figcaption>
@@ -64,9 +72,16 @@ https://cnoss.github.io/generative-gestaltung/
         <img class="m-portfolioItem-image" src="result-punkt-linie-flaeche/gg-sketch-punkt.png">
         <figcaption>
           <h2 class="m-portfolioItem-title">HORDE_</h2>
-          <h3 class="m-portfolioItem-subtitle">Unzählige Punkte in gerasterter Ordnung.</h3>
+          <h3 class="m-portfolioItem-subtitle">Nähe birgt Räumlichkeit.</h3>
 
-          <p>Welche Parameter des Elements (z.B. Größe, Position, Anzahl) haben Sie genutzt? Wie und warum sind die Elemente so platziert? Was macht den Entwurf aus? Warum ist er interessant? Wie hängen die verschiedenen Elemente zusammen? Wie zahlt er auf das Thema ein? Diese und ähnliche Fragen sollten Sie in einem kurzen Text klären.</p>
+          <p>Die vermeintliche Fläche setzt sich zusammen aus einem endlichen Raster von Punkten, welche sich durch Klicken auf die Mausposition zubewegen. Allein durch die veränderten Punktabstände erlangt die Gestalt ihre Räumlichkeit. Die entstehenden Figuren erinnern u.a. an das Knüllen von Stoff oder das Wölben einer Fläche.</p>
+          <p>Auch in diesem Sketch kann man durch verschiedene Presets wechseln und mit den unterschiedlichen Einstellungen experimentieren.</p>
+          <p>Bei dieser Arbeit bildet ein geordnetes Raster aus Punkten die Basis. Jeder Punkt kennt dabei seine ursprüngliche Position. So bewegen sie sich beim Loslassen der Maustaste stets zu ihrer Startposition zurück. Im speedMode "exponential" bewegen sich die Punkte in Abhängigkeit zum Mausabstand unterschiedlich schnell auf diese zu.</p>
+            <p class="setting-header">Die Wirkung der wichtigsten Parameter:</p>
+            <ul>
+              <li><b>speedMode</b> – ob die Geschwindigkeit der Punkte linear oder exponentiell ist</li>
+              <li><b>experimentalMode</b> – hier bewegen sich die Punkte nur zum Teil auf die Maus zu</li>
+            </ul>
 
           <p><a class="m-linkButton" href="result-punkt-linie-flaeche/">Sketch zeigen</a></p>
         </figcaption>
@@ -78,11 +93,22 @@ https://cnoss.github.io/generative-gestaltung/
         <img class="m-portfolioItem-image" src="result-farbe/gg-result-farbe.png">
         <figcaption>
           <h2 class="m-portfolioItem-title">CURLZ_</h2>
-          <h3 class="m-portfolioItem-subtitle">Einzelne Schwünge vermehren sich in unendlicher Fülle.</h3>
-          <p>Crowd who spoke on average, a 12-billion deal to. Is step in contrast, Treasury-bond yields that remain,
-            explain why it stands. Were pertinent example might be the first year it finally did begin. Of a rebound
-            in mortgage-backed bonds askin Capital, the moment will take advantage. Represents the Fed meeting, with
-            the transportation finance unit’s president and tightening.</p>
+          <h3 class="m-portfolioItem-subtitle">Einzelne Schwünge verlieren sich in symmetrischen Mustern.</h3>
+
+          <p>Mehrere geschwungene Linien verteilen sich gleichmäßig in einem Kreis, wobei Amplitude, Frequenz und Länge der Schwünge dynamisch einstellbar sind. Durch die zusätzlichen Kopien der Linien in farblichem Verlauf und mit einem Offset in Winkel und Ausdehnung entstehen interessante Überlagerungen und Muster. Durch die unterschiedlichen "blendingModes" lassen sich die Erscheinungen zusätzlich variieren. Die gesamte Struktur oszilliert gleichmäßig und sorgt so für eine dynamische Spannung.</p>
+          <p>Durch Drücken der "R"-Taste ändern sich die eingestellten Parameter in zufälliger Weise. Zusätzlich können die unterschiedlichen Einstellungen verändert und so vielseitige Ergebnisse erzielt werden.</p>
+          <p>Als Ausgangspunkt für diesen Sketch dienten in mehreren Kreisen verteilte Punkte. Anstelle dieser ziehen sich nun mehrere geschlossene Linien durch die Positionen der Punkte und schwingen um den Amplitudenwert auf und ab. Diese Gestalt wird mehrfach kopiert und farblich zwischen "hueInside" und "hueOutside" geblendet. Die Linienstärke nimmt mit jeder Kopie ab. Die in der Berechnung von Ausdehnung und Amplitude enthaltene Sinus-Funktion erzeugt die oszillierende Bewegung.</p>
+            <p class="setting-header">Die Wirkung der wichtigsten Parameter:</p>
+            <ul>
+              <li><b>numStrings</b> – Anzahl einzelner Stränge</li>
+              <li><b>stringAmplitude</b> – wie stark die Wellen ausschlagen</li>
+              <li><b>stringFrequency</b> – wie viele Wellenschwünge ein Strang hat</li>
+              <li><b>stringLength</b> – wie weit sich ein Strang vom Zentrum wegbewegt</li>
+              <li><b>radius</b> – Radius, ab dem die erste Welle einsetzt</li>
+              <li><b>numStringCopies</b> – Anzahl der Strangkopien</li>
+              <li><b>angleOffset</b> – Winkelabstand zwischen den einzelnen Kopien</li>
+              <li><b>spacing</b> – Abstand der Kopien entlang des Strangs</li>
+            </ul>
 
           <p><a class="m-linkButton" href="result-farbe/">Sketch zeigen</a></p>
         </figcaption>
