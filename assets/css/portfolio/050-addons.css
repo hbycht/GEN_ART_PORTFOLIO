@@ -6,4 +6,7 @@ Enthält alle zusätzlichen Klassen und Erweiterungen
 .setting-header{
     color: var(--color-accent);
     font-weight: bold;
+    margin-top: var(--m);
+    margin-bottom: var(--xs);
+    /* padding-bottom: 0; */
 }
