@@ -171,7 +171,7 @@ function showHint(hint, xP, yP)
     hintAlpha = max(hintAlpha - aniSpeed, 0);
   }
   
-  blendMode(NORMAL);
+  blendMode(BLEND);
   fill(drawingParams.hueInside, 80, 20, hintAlpha);
   rect(xP, yP, textWidth(hint) + 20, sizeText * 2, 10);
   fill(drawingParams.hueOutside, 100, 100, hintAlpha);

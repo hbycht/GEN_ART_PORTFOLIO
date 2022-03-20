@@ -180,24 +180,26 @@ function initParticles() {
   }
 }
 
-function drawParticle(p, forces) {
-  push();
-
+function drawParticle(p){
   // draw particle
   stroke(p.col, 100, 100, 100);
   strokeWeight(p.size);
   line(p.xPos, p.yPos, p.preX, p.preY);
+}
+
+function moveParticle(p, forces) {
+  push();
 
   // check if on canvas
   if (p.xPos > - p.size && p.xPos < canvasParams.w + p.size && p.yPos > - p.size && p.yPos < canvasParams.h + p.size) {
-    // move particle
+    // so move particle
     p.preX = p.xPos;
     p.preY = p.yPos;
     p.xPos += cos(p.rot) * p.speed;
     p.yPos += sin(p.rot) * p.speed;
   } 
   else {
-    //*// reborn particle
+    //*// else reborn particle
     if(drawingParams.circleSpawner) {
       // circle spawner
       let sAngle = (millis() / 1) % 360;
@@ -211,7 +213,7 @@ function drawParticle(p, forces) {
       p.xPos = cos(sAngle) * sRad + midX;
       p.yPos = sin(sAngle) * sRad + midY;
 
-    } 
+    } // normal way !!!
     else {
       // random spawner
       p.xPos = random(width);
@@ -219,7 +221,8 @@ function drawParticle(p, forces) {
     }
 
     let randomScale = random(1 / 2, 2);
-
+    
+    // with random stats
     p.col = random(drawingParams.particleColorBegin, drawingParams.particleColorEnd);
     p.preX = p.xPos;
     p.preY = p.yPos;
@@ -323,8 +326,102 @@ function executeFlowfield() {
 
   // REFRESH & DRAW PARTICLES
   particles.forEach(particle => {
-    drawParticle(particle, forces);
+    moveParticle(particle, forces);
+    drawParticle(particle);
   });
+
+
+  preParamQ = paramQ;
+}
+
+function executeStringfield() {
+  // FORCES
+  let forces = [];
+  let forceSpacing = drawingParams.forceSpacing;
+  let forcePower = drawingParams.forcePower;
+  let rows = floor(height / forceSpacing);
+  let columns = floor(width / forceSpacing);
+  let xOff = (width - columns * forceSpacing) / 2;
+  let yOff = (height - rows * forceSpacing) / 2;
+  let inc = drawingParams.noiseIncrement;
+
+  // PARTICLES
+  let numParticles = drawingParams.numParticles; // with STRINGS we should use less particles
+  let size = drawingParams.particleSize;
+
+  // TIME
+  let timeShift = millis() / 10000;
+
+  // Check changes in drawingParams
+  paramQ = width + height + numParticles;
+  changed = paramQ == preParamQ ? false : true;
+
+  // INIT PARTICLES & reset canvas stats if drawingParams changed
+  if(changed || keyIsPressed && key == 'r') {
+    initParticles();
+
+    midX = width / 2;
+    midY = height / 2;
+    minDimension = min(width, height);
+  }
+
+
+  background(drawingParams.particleColorBegin, 90, 5, drawingParams.backgroundAlpha);
+
+  // REFRESH & SHOW FORCES
+  for (let j = 0; j <= rows; j++) {
+    let fY = j * forceSpacing + yOff;
+    for (let i = 0; i <= columns; i++) {
+      let fX = i * forceSpacing + xOff;
+      let fRot = (noise(i * inc, j * inc, timeShift) * 2 - 1) * 360 + 360;
+
+      forces.push({
+        xPos: fX,
+        yPos: fY,
+        rot: fRot,
+        power: forcePower
+      });
+
+      if (drawingParams.showForces) {
+        drawForce(fX, fY, fRot, forcePower);
+      }
+    }
+  }
+
+  strokeWeight(size / 2);
+  stroke(drawingParams.particleColorBegin, 100, 100, 50);
+  noFill();
+
+  // begin STRING
+  beginShape();
+
+  // REFRESH & DRAW STRING POINTS AT EACH PARTICLE POSITION
+  // particles.forEach(particle => {
+  //   moveParticle(particle, forces);
+    
+  //   curveVertex(particle.xPos, particle.yPos);
+  // });
+
+  // define STRING length
+  let stringLength = 4;
+  // calculate number of strings
+  let numStrings = floor(particles.length / stringLength);
+
+  // for every string
+  for(let s = 0; s < numStrings; s++){
+    beginShape();
+    // slice particles array in string groups and for every particle in this STRING
+    particles.slice(s * stringLength, s * stringLength + stringLength).forEach(particle => {
+      // move it
+      moveParticle(particle, forces);
+      // draw STRING POINT at particle's position
+      curveVertex(particle.xPos, particle.yPos);
+    });
+    endShape();
+  }
+
+  // end STRING
+  endShape();
 
 
   preParamQ = paramQ;
@@ -502,7 +599,10 @@ function draw() {
   // let midY = height/2;
 
   // execute Flowfield function
-  executeFlowfield();
+  // executeFlowfield();
+
+  // execute Stringfield function
+  executeStringfield();
 }
 
 
